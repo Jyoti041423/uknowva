@@ -1,0 +1,21 @@
+<html>
+    <head>
+
+        <script src="app.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="google-signin-client_id" content="645266032061-kp7vli91h3m3jcr2vjqqk8r89b2juldq.apps.googleusercontent.com">
+
+    </head>
+        <body>
+            <h1>SIGN IN PAGE</h1>
+            <form name="loginForm">
+              <input type="text" name="uname" id="uname" placeholder="User Name or Email"><br><br>
+              <input type="text" name="password" id="password" placeholder="Password"><br><br>
+              <input type="submit" value="Submit" onclick="login()" >
+            </form>
+
+            <div class="g-signin2" data-onsuccess="onSignIn">Sign In</div>
+
+        </body>
+</html>
