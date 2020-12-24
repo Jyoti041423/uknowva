@@ -14,7 +14,7 @@ function sendOtp() {
     url: CONFIG['SEND_OTP_URL'],
     data: JSON.stringify({ phone_number: '+91' + phone_number }),
     success: onOtpSuccess,
-    error: otpError,
+    error: onError,
     contentType: 'application/json',
   });
 }
@@ -65,7 +65,7 @@ function verifyOtp() {
 function onVerifyOtpSuccess(response) {
   if (response && response['access_token']) {
     var token = JSON.parse(
-      window.atob(tokenResponse['access_token'].split('.')[1])
+      window.atob(response['access_token'].split('.')[1])
     );
     store(
       CONFIG['TOKEN_NAME'],
