@@ -87,22 +87,20 @@ function onSignIn(googleUser) {
       const url ='https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.readonly&'
                   +'include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&'
                   +'redirect_uri=http://localhost:8080&client_id=645266032061-ftv2h7qcdu1100o1gf8iu82n8src10jr.apps.googleusercontent.com'
-        console.log('url is', url);
-        window.open(url,'_self')
-        if(window.location.href!='localhost:8080' && window.location.href.indexOf('&code=')>1){
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const code = urlParams.get('code')
-            console.log(code);
-            gmailLogin(code);
-        }
-        // gmailLogin('4/0AY0e-g4IZYBzINXjovfDlaM9BLvlqrDcmLlpGlszmGGwQhOPlK5pOFwiRMmHweMQJ1n_dA');
+       window.open(url,'_self')
+    }
 
+    window.onload= function(){
+        if(window.location.href.indexOf('code')>1){
+        const code = new URLSearchParams(window.location.search).get('code');
+        console.log('code is here', code)
+        gmailLogin(code);
+        }
     }
 
     function gmailLogin(code) {
         var details = {
-            'code': '4/0AY0e-g5hc68U95dzEHHv2XEC76H2fvDxahz5_FQqwUOZPhb-1roqEmWhFnlSQM7h-4ZI_Q',
+            'code': code,
             'client_id':'645266032061-ftv2h7qcdu1100o1gf8iu82n8src10jr.apps.googleusercontent.com',
             'client_secret':'YHkf9WQ4bhm2n0tk3maWHkwQ',
             'redirect_uri': 'http://localhost:8080',
@@ -116,17 +114,11 @@ function onSignIn(googleUser) {
           formBody.push(encodedKey + "=" + encodedValue);
         }
         formBody = formBody.join("&");
-        
-        fetch('https://accounts.google.com/o/oauth2/token',{
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: formBody
-        }).then((reponse) => {
-            console.log('result is here' , reponse);
-        }).catch((error) => {
-            console.log('error is here' , error);
-        })
-       
+
+       $.post("https://accounts.google.com/o/oauth2/token", 
+        formBody,{headers: { 'Content-Type': 'application/x-www-form-urlencoded' }},
+           ).done(function(result1){
+           console.log('result 1', result1.access_token)
+           document.cookie = "access_token=" + result1.access_token;
+          })
     }
