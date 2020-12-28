@@ -24,6 +24,9 @@ function onOtpSuccess(response) {
     toastr.success(response['success']);
     document.getElementById('otp-send-screen').style.display = 'none';
     document.getElementById('verify-otp-screen').style.display = 'block';
+
+    // resend otp functionality
+    enableResendOtpOption();
   }
 }
 
@@ -176,4 +179,18 @@ function getUrlParameter(name) {
   return results === null
     ? ''
     : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function enableResendOtpOption() {
+  var timeleft = CONFIG['RESEND_OTP_SEND_TIMER'];
+  document.getElementById("resend-otp").style.display = "block";
+  var downloadTimer = setInterval(function(){
+    if(timeleft <= 0){
+      clearInterval(downloadTimer);
+      document.getElementById("countdown").innerHTML = "<span onclick='sendOtp()' class='resend-otp-btn'>Resend Otp</span>";
+    } else {
+      document.getElementById("countdown").innerHTML = "Retry Sending OTP in " + timeleft + " second(s)";
+    }
+    timeleft -= 1;
+  }, 1000);
 }
