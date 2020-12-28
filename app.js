@@ -1,3 +1,5 @@
+// const { keycloak } = require("./libraries/keycloak.js");
+
 function setTokenExpireTime(time) {
   var d = new Date();
   d.setTime(d.getTime() + time * 1000);
@@ -176,4 +178,23 @@ function getUrlParameter(name) {
   return results === null
     ? ''
     : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+
+function initKeycloak() {
+  keycloak = new Keycloak({
+    url: 'http://keycloak-dev.delhivery.com/auth/',
+    realm: 'Delhivery-dev',
+    clientId: 'WMS'
+  });
+  console.log('in keycloak', keycloak)
+
+ keycloak.init({
+  onLoad: 'check-sso',
+ silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html'
+ }).then(function(authenticated) {
+     alert(authenticated ? 'authenticated' : 'not authenticated');
+ }).catch(function() {
+     alert('failed to initialize');
+ });
 }
