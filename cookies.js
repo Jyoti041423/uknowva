@@ -88,6 +88,7 @@ function get(cookieName) {
 
 
 function del(cookieName, domain) {
+  debugger;
   if (this.get(cookieName)) {
     this.store(cookieName, "", new Date(-1), domain);
   }
