@@ -3,3 +3,7 @@ var ERROR_MESSAGES = Object.freeze({
     'OOPS_SOMETHING_WENT_WRONG': 'OOPS, something went wrong. Please try again later!'
 });
 
+var HTML_TEXT = Object.freeze({
+ OTP_RETRY_TEXT: "Retry Sending OTP in {{timeleft}} second(s)",
+ RESEND_OTP_TEXT: "<span onclick='MainApp.sendOtp()' class='resend-otp-btn'>Resend Otp</span>"
+});
