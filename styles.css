@@ -118,3 +118,11 @@ body {
 .button-full-width  > .col-xs-12 {
     padding:0px;
 }
+#resend-otp {
+    display: none;
+}
+
+.resend-otp-btn {
+    cursor: pointer;
+    text-decoration: underline;
+}
