@@ -24,8 +24,8 @@ var CONFIG = (function() {
     });
      
     var DEVELOPMENT = Object.freeze({
-        SEND_OTP_URL: 'https://key-cloak.delhivery.com/auth/realms/delhivery/grant-type/passwordless/otp/',
-        VERIFY_OTP_URL: 'https://key-cloak.delhivery.com/auth/realms/delhivery/grant-type/passwordless/otp-verify/',
+        SEND_OTP_URL: 'https://keycloak-dev.delhivery.com/auth/realms/delhivery-dev/grant-type/passwordless/otp/',
+        VERIFY_OTP_URL: 'https://keycloak-dev.delhivery.com/auth/realms/delhivery-dev/grant-type/passwordless/otp-verify/',
         TOKEN_NAME: 'uknowva_token',
         REFRESH_TOKEN_NAME: 'uknowva_refresh_token',
         ID_TOKEN_NAME: 'uknowva_id_token',

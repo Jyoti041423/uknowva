@@ -88,7 +88,6 @@
     };
 
     this.deleteCookie = function (cookieName, domain) {
-      debugger;
       if (_instance.getCookie(cookieName)) {
         _instance.storeCookie(cookieName, "", new Date(-1), domain);
       }

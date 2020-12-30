@@ -207,7 +207,6 @@
       );
       cookies.deleteCookie(CONFIG["ID_TOKEN_NAME"], cookies.getSubDomainName());
       keycloak.clearToken();
-      toastr.success('Successfully logout!')
       window.location.href = "index.html";
     };
   };
